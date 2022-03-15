@@ -1,0 +1,5 @@
+[workspace]
+
+members = [
+    "src/lesson-1-ownership"
+]
