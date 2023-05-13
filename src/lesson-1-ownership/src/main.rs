@@ -22,21 +22,29 @@ fn main() {
     // to be copy instead of move.
     let my_simple = Simple { integer: 10 };
 
-    print_simple(my_simple);
-    print_simple(my_simple); // still valid
+    print_simple(my_simple); // print_simple receives a copy of my_simple
+    print_simple(my_simple); // still valid, since my_simple was never moved
     print_simple(my_simple.clone()); // equivalent to the previous two statements
 }
 
 fn print_simple(simple: Simple) {
+    // since `Simple` has `Copy` trait applied, we still own the struct passed in,
+    // but in the example above, the struct is a copy of the original
+    // struct passed in from line 23.
     println!("Simple: integer: {}", simple.integer);
 }
 
 fn print_person(person: &Person) {
+    // When the argument type is "&Person",
+    // we say that `print_person` ends up holding a reference to a `Person`;
+    // in other words, `print_person` borrows the person struct passed in.
     println!("Person with name: {}, age: {}", person.name, person.age);
 }
 
 fn print_person_owned(person: Person) {
-    println!("Owned person with name: {}, age: {}", person.name, person.age);
+    // When the argument type is "Person" and not "&Person",
+    // we say that `print_person_owned` owns the person struct passed in.
+    println!("Person (owned) with name: {}, age: {}", person.name, person.age);
 }
 
 #[derive(Debug, Copy, Clone)]
