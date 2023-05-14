@@ -1,5 +1,6 @@
 [workspace]
 
 members = [
-    "src/lesson-1-ownership"
+    "src/lesson-1-ownership",
+    "src/lesson-2-references",
 ]
